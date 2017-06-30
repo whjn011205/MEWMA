@@ -28,18 +28,18 @@ class mewma(const_limit):
         print(self.cov)
                 
     def monitor_obs(self,obs):
-
-        # val=sample.update(self.mu, self.cov, self.covInv,self.z, 
-        #     obs,self.lam, self.adjust,self.dim)
+        
+        val=sample.update(self.mu, self.cov, self.covInv,self.z, 
+            obs,self.lam, self.adjust,self.dim)
         ## This is to verify whether the C code has the same result as using python version code
-        # adjust2=self.adjust
-        # val=sample.update(self.mu.copy(), self.cov.copy(), self.covInv.copy(),self.z.copy(), 
-        #     obs.copy(),self.lam, adjust2,self.dim)
-        # val2=self._updateA(obs)
-        # print(val, val2)
-        #val = 0.01
+#         adjust2=self.adjust
+#         val=sample.update(self.mu.copy(), self.cov.copy(), self.covInv.copy(),self.z.copy(), 
+#             obs.copy(),self.lam, adjust2,self.dim)
+#         val2=self._updateA(obs)
+#         print(val, val2)
+#         val = 0.01
+#         val = self._updateA(obs)
 
-        val = self._updateA(obs)
         self.stat[self.current] = val
         self.current += 1
         
@@ -58,7 +58,8 @@ class mewma(const_limit):
         #tmp = np.zeros(len(vec),dtype=float)
         #tmp=la.cho_solve(la.cho_factor(self.sigma),vec)
         #self.sigma.solve(vec,tmp)
-        
+    
+    # This method is the algo implemeted in python
     def _updateA(self, obs):
         cons = self.lam/(2-self.lam)
 
