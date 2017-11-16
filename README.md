@@ -10,5 +10,7 @@ This algo is used in statistical process control to monitor a certain process qu
 
 Inside this algo, there is one function "update" which involves linear algebra operations that is computational intensive, thus developed an C extension to be called in python 
 - update_py27.c: 	C extension for "update" function for py27
+- make_py27.bat:	Compile update_py27.c into python module	
+
 - update_py35.c:	C extension for "update" function for py35
-- 
+- make_py35.bat:	Compile update_py35.c into python module	
