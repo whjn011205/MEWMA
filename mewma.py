@@ -8,7 +8,7 @@ import scipy.linalg.lapack
 from ctypes import *
 import ctypes
 #print("sgsgdsgdsgdgdgggggggggggggg")
-import sample
+import update
 #c_double_p =  ctypes.POINTER(ctypes.c_double)
 #lib=ctypes.cdll.LoadLibrary("update.so")
 #updateA=lib.update
@@ -29,7 +29,7 @@ class mewma(const_limit):
                 
     def monitor_obs(self,obs):
         
-        val=sample.update(self.mu, self.cov, self.covInv,self.z, 
+        val=update.update(self.mu, self.cov, self.covInv,self.z, 
             obs,self.lam, self.adjust,self.dim)
         ## This is to verify whether the C code has the same result as using python version code
 #         adjust2=self.adjust
@@ -59,7 +59,7 @@ class mewma(const_limit):
         #tmp=la.cho_solve(la.cho_factor(self.sigma),vec)
         #self.sigma.solve(vec,tmp)
     
-    # This method is the algo implemeted in python
+    # This method is the pure python version of update function 
     def _updateA(self, obs):
         cons = self.lam/(2-self.lam)
 
